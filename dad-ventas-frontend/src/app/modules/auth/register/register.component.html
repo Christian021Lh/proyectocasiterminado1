@@ -1,0 +1,148 @@
+<div class="min-h-screen grid grid-cols-1 md:grid-cols-2 bg-slate-900 text-white">
+    <!-- LADO IZQUIERDO -->
+    <div class="flex items-center justify-center px-6 py-12">
+        <div class="w-full max-w-md bg-white text-slate-900 rounded-3xl shadow-2xl p-10 space-y-7 border border-indigo-100">
+
+            <!-- LOGO -->
+            <div class="text-center space-y-2">
+                <img
+                        src="assets/img/logo-astrocompu.png"
+                        alt="AstroCompu Logo"
+                        class="h-50 mx-auto drop-shadow-md"
+                />
+                <h2 class="text-3xl font-extrabold text-slate-800">
+                    <span class="text-indigo-600">Crear</span> una cuenta
+                </h2>
+                <p class="text-sm text-slate-500">Empieza tu experiencia con nosotros 🚀</p>
+            </div>
+
+            <!-- FORMULARIO -->
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate class="space-y-5">
+
+                <!-- USUARIO -->
+                <div>
+                    <label for="userName" class="block text-sm font-medium text-slate-600 mb-1">Correo</label>
+                    <input
+                            type="text"
+                            id="userName"
+                            formControlName="userName"
+                            placeholder="Correo o nombre de usuario"
+                            [ngClass]="{ 'border-red-500': submitted && registerForm.get('userName')?.invalid }"
+                            class="w-full px-4 py-2 border border-slate-300 rounded-lg shadow-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                    />
+                    <div *ngIf="submitted && registerForm.get('userName')?.invalid" class="text-red-500 text-sm mt-1">
+                        El usuario es obligatorio.
+                    </div>
+                </div>
+
+                <!-- CONTRASEÑA -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-slate-600 mb-1">Contraseña</label>
+                    <input
+                            type="password"
+                            id="password"
+                            formControlName="password"
+                            placeholder="••••••••"
+                            [ngClass]="{ 'border-red-500': submitted && registerForm.get('password')?.invalid }"
+                            class="w-full px-4 py-2 border border-slate-300 rounded-lg shadow-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                    />
+                    <div *ngIf="submitted && registerForm.get('password')?.invalid" class="text-red-500 text-sm mt-1">
+                        La contraseña es obligatoria.
+                    </div>
+                </div>
+
+                <!-- CONFIRMAR CONTRASEÑA -->
+                <div>
+                    <label for="confirmPassword" class="block text-sm font-medium text-slate-600 mb-1">Confirmar contraseña</label>
+                    <input
+                            type="password"
+                            id="confirmPassword"
+                            formControlName="confirmPassword"
+                            placeholder="••••••••"
+                            [ngClass]="{ 'border-red-500': submitted && registerForm.get('confirmPassword')?.invalid }"
+                            class="w-full px-4 py-2 border border-slate-300 rounded-lg shadow-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                    />
+                    <div *ngIf="submitted && registerForm.get('confirmPassword')?.invalid" class="text-red-500 text-sm mt-1">
+                        Debes confirmar tu contraseña.
+                    </div>
+                </div>
+
+                <!-- NOMBRE -->
+                <div>
+                    <label for="name" class="block text-sm font-medium text-slate-600 mb-1">Nombre completo</label>
+                    <input
+                            type="text"
+                            id="name"
+                            formControlName="name"
+                            placeholder="Tu nombre"
+                            [ngClass]="{ 'border-red-500': submitted && registerForm.get('name')?.invalid }"
+                            class="w-full px-4 py-2 border border-slate-300 rounded-lg shadow-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                    />
+                    <div *ngIf="submitted && registerForm.get('name')?.invalid" class="text-red-500 text-sm mt-1">
+                        El nombre es obligatorio.
+                    </div>
+                </div>
+
+                <!-- DOCUMENTO -->
+                <div>
+                    <label for="document" class="block text-sm font-medium text-slate-600 mb-1">DNI / Documento</label>
+                    <input
+                            type="text"
+                            id="document"
+                            formControlName="document"
+                            placeholder="12345678"
+                            [ngClass]="{ 'border-red-500': submitted && registerForm.get('document')?.invalid }"
+                            class="w-full px-4 py-2 border border-slate-300 rounded-lg shadow-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                    />
+                    <div *ngIf="submitted && registerForm.get('document')?.invalid" class="text-red-500 text-sm mt-1">
+                        El documento es obligatorio.
+                    </div>
+                </div>
+
+                <!-- TELÉFONO -->
+                <div>
+                    <label for="telefono" class="block text-sm font-medium text-slate-600 mb-1">Teléfono</label>
+                    <input
+                            type="text"
+                            id="telefono"
+                            formControlName="telefono"
+                            placeholder="987654321"
+                            [ngClass]="{ 'border-red-500': submitted && registerForm.get('telefono')?.invalid }"
+                            class="w-full px-4 py-2 border border-slate-300 rounded-lg shadow-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                    />
+                    <div *ngIf="submitted && registerForm.get('telefono')?.invalid" class="text-red-500 text-sm mt-1">
+                        El teléfono es obligatorio.
+                    </div>
+                </div>
+
+                <!-- MENSAJE DE ERROR -->
+                <div *ngIf="errorMessage" class="text-red-700 bg-red-100 border border-red-300 rounded-lg px-4 py-2 text-sm shadow">
+                    {{ errorMessage }}
+                </div>
+
+                <!-- BOTÓN -->
+                <button
+                        type="submit"
+                        class="w-full bg-gradient-to-r from-indigo-500 to-violet-500 hover:from-indigo-600 hover:to-violet-600 text-white font-semibold py-2.5 rounded-lg shadow-lg transition duration-300"
+                >
+                    Registrarse
+                </button>
+            </form>
+
+            <!-- LINK DE LOGIN -->
+            <div class="text-center text-sm text-slate-600 pt-4">
+                ¿Ya tienes cuenta?
+                <a routerLink="/auth/login" class="text-indigo-600 hover:underline font-semibold">Iniciar sesión</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- LADO DERECHO: imagen decorativa -->
+    <div class="hidden md:block">
+        <img
+                src="assets/img/login.png"
+                alt="Imagen decorativa AstroCompu"
+                class="h-full w-full object-cover"
+        />
+    </div>
+</div>
